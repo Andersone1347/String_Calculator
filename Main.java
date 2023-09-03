@@ -1,5 +1,3 @@
-package Calc;
-
 import java.util.Scanner;
 
 public class Main {
@@ -29,12 +27,15 @@ public class Main {
     }
 }
 
-    class Calcc {
-        public String plus(String a) throws Exception {
-            String[] par;
-            par = a.split("\\s\\+\\s");
+class Calcc {
+    public String plus(String a) throws Exception {
+        String[] par;
+        par = a.split("\\s\\+\\s");
 
-            if (Exeption.checkerFirstStr(par[0])) {
+        if (Exeption.checkerFirstStr(par[0])) {
+            throw new Exception();
+        } else {
+            if (Exeption.checkerFirstStr(par[1])) {
                 throw new Exception();
             } else {
                 RemoveTrash.trashMass(par);
@@ -48,11 +49,14 @@ public class Main {
                 }
             }
         }
-
-        public String minus(String a) throws Exception {
-            String[] par;
-            par = a.split("(\\s-\\s)");
-            if (Exeption.checkerFirstStr(par[0])) {
+    }
+    public String minus(String a) throws Exception {
+        String[] par;
+        par = a.split("(\\s-\\s)");
+        if (Exeption.checkerFirstStr(par[0])) {
+            throw new Exception();
+        } else {
+            if (Exeption.checkerFirstStr(par[1])) {
                 throw new Exception();
             } else {
                 RemoveTrash.trashMass(par);
@@ -67,11 +71,15 @@ public class Main {
                 }
             }
         }
+    }
 
-        public String um(String a) throws Exception {
-            String[] par;
-            par = a.split("\\s\\*\\s");
-            if (Exeption.checkerFirstStr(par[0])) {
+    public String um(String a) throws Exception {
+        String[] par;
+        par = a.split("\\s\\*\\s");
+        if (Exeption.checkerFirstStr(par[0])) {
+            throw new Exception();
+        } else {
+            if (Exeption.checkerTwoStr(par[1])) {
                 throw new Exception();
             } else {
                 RemoveTrash.trashMass(par);
@@ -91,11 +99,14 @@ public class Main {
                 }
             }
         }
-
-        public String del(String a) throws Exception {
-            String[] par;
-            par = a.split("\\s/\\s");
-            if (Exeption.checkerFirstStr(par[0])) {
+    }
+    public String del(String a) throws Exception {
+        String[] par;
+        par = a.split("\\s/\\s");
+        if (Exeption.checkerFirstStr(par[0])) {
+            throw new Exception();
+        } else {
+            if (Exeption.checkerTwoStr(par[1])) {
                 throw new Exception();
             } else {
                 RemoveTrash.trashMass(par);
@@ -112,37 +123,42 @@ public class Main {
                 }
             }
         }
-
-
-class Exeption {
-    public static boolean checkerStr(String a, String b) {
-        return a.length() < 0 || a.length() > 10 || b.length() < 0 || b.length() > 10;
     }
-    public static boolean checkerInt(int a){
-        return a < 1 || a > 10;
-    }
-    public static boolean checkerFirstStr(String a){
-        String b,c;
-        b = String.valueOf(a.charAt(0));
-        c = String.valueOf(a.charAt(a.length()-1));
-        if (b.equals(c) && b.contains("\"")){
-            return false;
-        } else {
-            return true;
+
+    class Exeption {
+        public static boolean checkerStr(String a, String b) {
+            return a.length() < 0 || a.length() > 10 || b.length() < 0 || b.length() > 10;
         }
-    }
-}
-
-        class RemoveTrash {
-            public static String[] trashMass(String[] par) {
-                for (int i = 0; i < par.length; i++) {
-                    par[i] = par[i].replaceAll(" ", "").replaceAll("\"", "");
-                }
-                return par;
+        public static boolean checkerInt(int a){
+            return a < 1 || a > 10;
+        }
+        public static boolean checkerFirstStr(String a){
+            String b,c;
+            b = String.valueOf(a.charAt(0));
+            c = String.valueOf(a.charAt(a.length()-1));
+            if (b.equals(c) && b.contains("\"")){
+                return false;
+            } else {
+                return true;
             }
         }
-
+        public static boolean checkerTwoStr(String a){
+            if (a.contains("\"")){
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
+    class RemoveTrash {
+        public static String[] trashMass(String[] par) {
+            for (int i = 0; i < par.length; i++) {
+                par[i] = par[i].replaceAll("\"", "");
+            }
+            return par;
+        }
+    }
 
+}
 
